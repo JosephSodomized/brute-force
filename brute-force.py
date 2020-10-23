@@ -9,7 +9,13 @@ def dataset(n, capacity):
                      random.randint(1,  capacity)))
     return data
 
-
+def possibilities(dataset):
+    possibilities = [[]]
+    for item in dataset:
+        new = [possibility+[item] for possibility in possibilities]
+        possibilities.extend(new)
+    return possibilities
+	
 # random data set
 while True:
     n = input('Number of available products: ')
@@ -28,6 +34,16 @@ while True:
 print('Data (Products):')
 data = dataset(n, capacity)
 print(data)
+print('--------')
+
+#our data set
+'''
+data = [(59, 30), (3, 1), (23, 11), (8, 50), (9, 17), (12, 40), (62, 14), (13, 20), (5, 12), (5, 15)]
+capacity = 50
+'''
+print('Possibilities')
+possibilities = possibilities(data)
+print(possibilities)
 print('--------')
 
 input("Press enter to close program")
