@@ -16,6 +16,16 @@ def possibilities(dataset):
         possibilities.extend(new)
     return possibilities
 	
+def knapsack(possibilities, capacity):
+    best_solution = [[], 0, 0]
+    for possibility in possibilities:
+        wt = sum([weight[0] for weight in possibility])
+        val = sum([value[1] for value in possibility])
+        if wt <= capacity and val > best_solution[2]:
+            best_solution = [possibility, wt, val]
+    return best_solution
+	
+	
 # random data set
 while True:
     n = input('Number of available products: ')
@@ -45,5 +55,12 @@ print('Possibilities')
 possibilities = possibilities(data)
 print(possibilities)
 print('--------')
+
+
+result = knapsack(possibilities, capacity)
+print('The best solution: ', result[0])
+print('--------')
+print('Weight: ', result[1], '; Value: ', result[2])
+
 
 input("Press enter to close program")
